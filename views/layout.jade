@@ -1,0 +1,33 @@
+include mixins/scripts
+include mixins/inputs
+
+mixin nav-item(href, text, title)
+  if(req.path == href)
+    li.active= text
+  else
+    li: a(href=href, title=title)= text
+
+!!! 5
+html(lang='cs')
+  head
+    block head
+      block title
+        title= title
+      link(rel='stylesheet', href='/stylesheets/style.css')
+      link(rel='shortcut icon', href='/favicon.ico')
+      block scripts
+        script(type='text/javascript', src='/socket.io/socket.io.js')
+        mixin localscript('jquery.min')
+  body
+    #page
+      #top
+        block top
+          block user
+            ul#user
+          block nav
+            ul#nav
+      #main
+        block content
+      #foot
+        block foot
+          #copy &copy; <a href="mailto:langpavel@prorubky.cz">Pavel Lang</a> 2012

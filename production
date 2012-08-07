@@ -1,0 +1,3 @@
+#!/bin/sh
+
+TZ=/usr/share/zoneinfo/UTC NODE_ENV=production node server.js 

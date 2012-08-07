@@ -1,0 +1,27 @@
+{
+  "name": "blog.hravost.org",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "async": "~0.1.22",
+    "connect": "~2.4.1",
+    "connect-redis": "~1.4.1",
+    "colors": "~0.6.0-1",
+    "express": "~3.0.0rc2",
+    "jade": "~0.26.3",
+    "browserify": "~1.14.2",
+    "markdown": "~0.4.0",
+    "stylus": "~0.28.2",
+    "nib": "~0.7.0",
+    "hiredis": "~0.1.14",
+    "redis": "~0.7.2",
+    "emailjs": "~0.2.9",
+    "socket.io": "~0.9.9",
+    "gm": "~1.4.1",
+    "mkdirp": "~0.3.3",
+    "connect-repl": "~0.0.1",
+    "browserify": "~1.14.4",
+    "debug": "~0.7.0",
+    "commander": "~0.6.1"
+  }
+}

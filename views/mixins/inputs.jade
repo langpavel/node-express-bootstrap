@@ -1,0 +1,25 @@
+mixin input(name, text, type, value, required)
+  div(id='d-'+name)
+    label(for=name)= text
+    input(id=name, name=name, type=type, required=required, value=value)
+    div.errors(id=name+'-errors')
+      if errors[name]
+        ul.errors
+          each error in errors[name]
+            li= error
+
+mixin textinput(name, text, required)
+  mixin input(name, text, 'text', body[name] || '', required)
+
+mixin passwdinput(name, text, required)
+  mixin input(name, text, 'password', null, required)
+
+mixin submit(name, value)
+  mixin input(name, null, 'submit', value)  
+
+mixin formerrors
+  div.errors(id='_FORM_-errors')
+    if errors['_FORM_']
+      ul.errors
+        each error in errors['_FORM_']
+          li= error
