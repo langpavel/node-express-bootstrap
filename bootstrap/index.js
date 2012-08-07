@@ -1,8 +1,9 @@
 
 var app = GLOBAL.SERVER;
 
-DEBUG('Loading conf.json');
-GLOBAL.CONF = require('../conf.json');
+
+// load global CONF
+require('./conf');
 
 
 DEBUG('Common configuration - before');
