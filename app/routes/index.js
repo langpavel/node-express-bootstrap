@@ -1,6 +1,6 @@
 
 
 SERVER.get('/', function(req, res) {
-  res.locals.title = "title";
-  res.render("pages/main.html.jade");
+  res.locals.title = CONF.site.title;
+  res.render("main/index.jade");
 });
