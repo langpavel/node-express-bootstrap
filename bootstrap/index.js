@@ -1,9 +1,23 @@
 
-var app = GLOBAL.SERVER;
+var path = require('path');
 
 
 // load global CONF
-require('./conf');
+DEBUG('Loading conf.json');
+GLOBAL.CONF = require('../conf.json');
+
+
+
+CONF.static = path.resolve(__dirname, '..', CONF.static || './public');
+
+CONF.favicon = path.resolve(CONF.static, CONF.favicon || 'favicon.ico');
+
+CONF.server.views = path.resolve(__dirname, '..', CONF.server.views || './views');
+
+CONF.stylus.src = path.resolve(__dirname, '..', CONF.stylus.src || './public/stylesheets');
+
+CONF.stylus.dest = path.resolve(__dirname, '..', CONF.stylus.dest || CONF.stylus.src);
+
 
 
 DEBUG('Common configuration - before');
@@ -11,9 +25,9 @@ require('./before');
 
 
 // require 'production' or 'development' based on NODE_ENV
-var env = app.get('env');
+var env = GLOBAL.SERVER.get('env');
 DEBUG('Environment configuration: ' + env);
-require('./on/' + env);
+require('./' + env);
 
 
 DEBUG('Common configuration - after');

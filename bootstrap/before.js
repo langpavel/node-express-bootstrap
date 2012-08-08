@@ -4,6 +4,7 @@ debugger;
 
 var express = require('express');
 var redis = require("redis");
+var stylus = require("stylus");
 
 
 
@@ -46,5 +47,7 @@ SERVER.use(express.session({
 SERVER.use(express.csrf());
 
 SERVER.use(SERVER.router);
+
+SERVER.use(CONF.stylus.url || '/stylesheets',stylus.middleware(CONF.stylus));
 
 SERVER.use(express.static(CONF.static));
