@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "async": "~0.1.22",
-    "bootstrap": "git://github.com/twitter/bootstrap.git",
+    "bootstrap": "git://github.com/langpavel/bootstrap.git",
     "browserify": "~1.14.5",
     "colors": "~0.6.0-1",
     "commander": "~0.6.1",
@@ -22,7 +22,7 @@
     "mysql": "~2.0.0-alpha3",
     "nib": "~0.7.0",
     "redis": "~0.7.2",
-    "showdown": "0.2.0",
+    "showdown": "~0.2.0",
     "socket.io": "~0.9.9",
     "stylus": "~0.28.2",
     "uglify-js": "~1.3.3"

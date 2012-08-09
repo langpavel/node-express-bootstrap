@@ -21,3 +21,4 @@ conf.json
 /public/javascripts/*.min.js
 public/javascripts/highlight.js
 public/javascripts/site.js
+public/stylesheets/style.css

@@ -5,7 +5,7 @@ UGLIFY=./node_modules/.bin/uglifyjs
 BROWSERIFIABLE=$(shell ls browserify/*.js | sed s+browserify/+public/javascripts/+)
 UGLIFIABLE=$(shell ls public/javascripts/*.js | grep -ve '\.min\.js$$' | sed s+.js$$+.min.js+)
 
-all: browserify public/javascripts/site.js
+all: module-bootstrap browserify public/javascripts/site.js
 	make uglify
 
 clean: clean-styles clean-uglified clean-browsefied

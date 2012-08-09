@@ -1,3 +1,5 @@
 #!/bin/sh
 
+make all
+
 TZ=/usr/share/zoneinfo/UTC NODE_ENV=development DEBUG=* node server.js 
