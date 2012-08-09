@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "async": "~0.1.22",
+    "bootstrap": "git://github.com/twitter/bootstrap.git",
     "browserify": "~1.14.5",
     "colors": "~0.6.0-1",
     "commander": "~0.6.1",
@@ -14,15 +15,15 @@
     "emailjs": "~0.2.9",
     "express": "~3.0.0rc2",
     "gm": "~1.4.1",
+    "highlight.js": "~7.0.1",
     "hiredis": "~0.1.14",
     "jade": "~0.26.3",
-    "markdown": "~0.4.0",
     "mkdirp": "~0.3.3",
     "mysql": "~2.0.0-alpha3",
     "nib": "~0.7.0",
     "redis": "~0.7.2",
+    "showdown": "0.2.0",
     "socket.io": "~0.9.9",
-    "stylus": "~0.28.2",
-    "bootstrap": "git://github.com/twitter/bootstrap.git"
+    "stylus": "~0.28.2"
   }
 }

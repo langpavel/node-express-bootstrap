@@ -1,12 +1,7 @@
 
 module.exports = exports = function setupRoutes(app) {
-  //var CONF = app.configuration;
 
-  //APP.url('home', '/');
+  require('./home')(app);
+  require('./pages')(app);
 
-  app.get('/', function(req, res) {
-    res.render("main/index.jade");
-  });
-
-  //require('./login');
 };
