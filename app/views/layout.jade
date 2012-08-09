@@ -1,5 +1,6 @@
 include mixins/scripts
 include mixins/inputs
+include mixins/menus
 
 !!! 5
 html(lang='cs')
@@ -15,7 +16,6 @@ html(lang='cs')
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel="stylesheet", href="/stylesheets/bootstrap-responsive.min.css")
 
-    | <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     | <!--[if lt IE 9]>
     |   <script src="/javascripts/html5.js"></script>
     | <![endif]-->
@@ -27,12 +27,7 @@ html(lang='cs')
       <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
       <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
 
-
-    block scripts
-      //- script(type='text/javascript', src='/socket.io/socket.io.js')
-
-
-  body(cz-shortcut-listen=true)
+  body
     .navbar.navbar-fixed-top
       .navbar-inner
         .container-fluid
@@ -40,43 +35,26 @@ html(lang='cs')
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.brand(href="#") Project name
-          .btn-group.pull-right
-            a.btn.dropdown-toggle(data-toggle="dropdown", href="#")
-              i.icon-user
-              | Username
-              span.caret
-            ul.dropdown-menu
-              li: a(href="#") Profile
-              li.divider
-              li: a(href="#") Sign Out
+          a.brand(href="#") Hravost o.<small>&nbsp;</small>s.
+          mixin configmenu
+          mixin usermenu
           .nav-collapse
             ul.nav
-              li.active: a(href="#") Home
-              li: a(href="#about") About
-              li: a(href="#contact") Contact
+              li.active: a(href="/") Hravost
+              li: a(href="/about") O sdružení
+              li: a(href="/contact") Kontaktujte nás
 
     .container-fluid
       .row-fluid
         .span10
           .hero-unit
-            h1 Hello, world!
-            p This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
-            p <a class="btn btn-primary btn-large">Learn more »</a>
+            h1 Hravost o.<span style="font-size:50%">&nbsp;</span>s.
+            hr
+            p Podporujeme volnočasové aktivity
+            p Organizujeme a zajišťujeme akce pro členy a další zájemce
+            hr
+            p <a class="btn btn-primary btn-large">více o sdružení »</a>
 
-          .row-fluid
-            .span4
-              h2 Heading
-              p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-              p <a class="btn" href="#">View details »</a>
-            .span4
-              h2 Heading
-              p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-              p <a class="btn" href="#">View details »</a>
-            .span4
-              h2 Heading
-              p Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-              p <a class="btn" href="#">View details »</a>
           .row-fluid
             .span4
               h2 Heading
@@ -92,6 +70,7 @@ html(lang='cs')
               p <a class="btn" href="#">View details »</a>
 
         .span2
+        //
           .well.sidebar-nav
             ul.nav.nav-list
               li.nav-header Sidebar
@@ -110,6 +89,8 @@ html(lang='cs')
       hr
 
       footer
-        p © <a href="mailto:langpavel@gmail.com">Pavel Lang</a> 2012
+        p © <a href="mailto:webmaster@hravost.org">Hravost o.<span style="font-size:50%">&nbsp;</span>s.</a> 2012
 
   mixin localscript('site')
+  block scripts
+    //- script(type='text/javascript', src='/socket.io/socket.io.js')

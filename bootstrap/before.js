@@ -1,10 +1,10 @@
 
 // SERVER and CONF are global variables
-debugger;
 
 var express = require('express');
 var redis = require("redis");
 var stylus = require("stylus");
+var nib = require("nib");
 
 
 
@@ -40,14 +40,23 @@ SERVER.use(express.cookieParser(CONF.secret.cookie));
 
 CONF.session.redisStore.client = SERVER.redisClient;
 SERVER.use(express.session({
-  store: new SERVER.RedisStore(CONF.session.redisStore),
-  secret: CONF.secret.session
+  store: new SERVER.RedisStore(CONF.session.redisStore)
 }))
 
 SERVER.use(express.csrf());
 
 SERVER.use(SERVER.router);
 
-SERVER.use(CONF.stylus.url || '/stylesheets',stylus.middleware(CONF.stylus));
 
+// Stylus and nib CSS preprocessor
+CONF.stylus.compile = function(str, path) {
+  return stylus(str)
+    .set('filename', path)
+    .set('compress', true)
+    .use(nib());
+}
+SERVER.use(CONF.stylus.url || '/stylesheets', stylus.middleware(CONF.stylus));
+
+
+// static files serving
 SERVER.use(express.static(CONF.static));
