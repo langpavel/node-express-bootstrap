@@ -1,37 +1,40 @@
 
+
+var debug = require('debug')('application:bootstrap');
 var path = require('path');
 
 
-// load global CONF
-DEBUG('Loading conf.json');
-GLOBAL.CONF = require('../conf.json');
+
+module.exports = function bootstrap(app) {
+  debug('Loading conf.json');
+  var conf = app.configuration = require('../conf.json');
+
+
+  conf.static = path.resolve(__dirname, '..', conf.static || './public');
+
+  conf.favicon = path.resolve(conf.static, conf.favicon || 'favicon.ico');
+
+  conf.application.views = path.resolve(__dirname, '..', conf.application.views || './views');
+
+  conf.stylus.src = path.resolve(__dirname, '..', conf.stylus.src || './public/stylesheets');
+
+  conf.stylus.dest = path.resolve(__dirname, '..', conf.stylus.dest || conf.stylus.src);
 
 
 
-CONF.static = path.resolve(__dirname, '..', CONF.static || './public');
-
-CONF.favicon = path.resolve(CONF.static, CONF.favicon || 'favicon.ico');
-
-CONF.application.views = path.resolve(__dirname, '..', CONF.application.views || './views');
-
-CONF.stylus.src = path.resolve(__dirname, '..', CONF.stylus.src || './public/stylesheets');
-
-CONF.stylus.dest = path.resolve(__dirname, '..', CONF.stylus.dest || CONF.stylus.src);
+  debug('Common configuration - before');
+  require('./before')(app);
 
 
-
-DEBUG('Common configuration - before');
-require('./before');
-
-
-// require 'production' or 'development' based on NODE_ENV
-var env = GLOBAL.APP.get('env');
-DEBUG('Environment configuration: ' + env);
-require('./' + env);
+  // require 'production' or 'development' based on NODE_ENV
+  var env = app.get('env');
+  debug('Environment configuration: ' + env);
+  require('./' + env)(app);
 
 
-DEBUG('Common configuration - after');
-require('./after');
+  debug('Common configuration - after');
+  require('./after')(app);
 
 
-DEBUG('Configuration loaded');
+  debug('Configuration loaded');
+};

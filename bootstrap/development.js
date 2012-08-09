@@ -1,17 +1,16 @@
 
-// APP and CONF are global variables
-
 
 
 var express = require('express');
 
 
+module.exports = exports = function bootstrapDevelopment(app) {
+  //var CONF = app.configuration;
 
-APP.use(express.errorHandler({
-  dumpExceptions: true, 
-  showStack: true }
-));
+  app.use(express.errorHandler({
+    dumpExceptions: true, 
+    showStack: true }
+  ));
 
-
-
-APP.use(require('connect-repl')());
+  app.use(require('connect-repl')());
+};

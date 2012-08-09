@@ -3,12 +3,12 @@ var express = require('express');
 
 
 
-GLOBAL.APP = express();
+var app = module.exports = exports = express();
 
 
 
-require('../bootstrap');
+require('../bootstrap')(app);
 
 
 
-require('./routes');
+require('./routes')(app);

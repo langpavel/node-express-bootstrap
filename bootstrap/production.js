@@ -6,8 +6,11 @@
 var express = require('express');
 
 
+module.exports = exports = function bootstrapProduction(app) {
+  //var CONF = app.configuration;
 
-APP.use(express.errorHandler({
-  dumpExceptions: false, 
-  showStack: false }
-));
+  app.use(express.errorHandler({
+    dumpExceptions: false, 
+    showStack: false }
+  ));
+};

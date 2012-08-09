@@ -1,6 +1,6 @@
 
-GLOBAL.DEBUG = require('debug')('application:global');
-GLOBAL.DEBUG('Boot at ' + (new Date).toISOString());
+debug = require('debug')('application:server');
+debug('Boot at ' + (new Date).toISOString());
 
 // use node application domains
 var domain = require('domain');
@@ -8,12 +8,15 @@ var http = require('http');
 
 
 
-require('./app');
+var app = require('./app');
 
 
 
-var server = GLOBAL.SERVER = http.createServer(APP);
+var server = module.exports = http.createServer(app);
+server.app = app;
+
+var conf = app.configuration.server;
 
 
-server.listen.apply(server, CONF.server.listen);
-DEBUG("Server listening: " + CONF.server.listen);
+server.listen.apply(server, conf.listen);
+debug("Server listening: " + conf.listen);

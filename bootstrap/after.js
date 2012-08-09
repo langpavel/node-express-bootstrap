@@ -1,2 +1,5 @@
 
-// APP and CONF are global variables
+module.exports = exports = function bootstrapAfter(app) {
+  //var CONF = app.configuration;
+
+};
