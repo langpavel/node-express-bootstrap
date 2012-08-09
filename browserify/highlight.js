@@ -1,0 +1,2 @@
+
+$.highlight = require('highlight.js');

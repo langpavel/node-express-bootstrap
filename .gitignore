@@ -18,3 +18,6 @@ tmp
 
 conf.json
 /custom-*
+/public/javascripts/*.min.js
+public/javascripts/highlight.js
+public/javascripts/site.js
