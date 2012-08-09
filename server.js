@@ -4,15 +4,16 @@ GLOBAL.DEBUG('Boot at ' + (new Date).toISOString());
 
 // use node application domains
 var domain = require('domain');
+var http = require('http');
 
 
 
-var express = require('express');
+require('./app');
 
 
 
-GLOBAL.SERVER = express();
+var server = GLOBAL.SERVER = http.createServer(APP);
 
 
-
-require('./bootstrap');
+server.listen.apply(server, CONF.server.listen);
+DEBUG("Server listening: " + CONF.server.listen);

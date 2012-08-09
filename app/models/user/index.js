@@ -2,7 +2,7 @@
 var debug = require('debug')('application:model:user');
 
 
-var redis = SERVER.redisClient;
+var redis = APP.redisClient;
 
 
 var prefix = CONF.model.user || 'user:';

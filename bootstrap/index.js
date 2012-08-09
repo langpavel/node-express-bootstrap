@@ -12,7 +12,7 @@ CONF.static = path.resolve(__dirname, '..', CONF.static || './public');
 
 CONF.favicon = path.resolve(CONF.static, CONF.favicon || 'favicon.ico');
 
-CONF.server.views = path.resolve(__dirname, '..', CONF.server.views || './views');
+CONF.application.views = path.resolve(__dirname, '..', CONF.application.views || './views');
 
 CONF.stylus.src = path.resolve(__dirname, '..', CONF.stylus.src || './public/stylesheets');
 
@@ -25,7 +25,7 @@ require('./before');
 
 
 // require 'production' or 'development' based on NODE_ENV
-var env = GLOBAL.SERVER.get('env');
+var env = GLOBAL.APP.get('env');
 DEBUG('Environment configuration: ' + env);
 require('./' + env);
 

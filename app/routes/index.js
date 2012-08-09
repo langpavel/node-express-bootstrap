@@ -1,9 +1,8 @@
 
 
-//SERVER.url('home', '/');
+//APP.url('home', '/');
 
-SERVER.get('/', function(req, res) {
-  res.locals.title = CONF.site.title;
+APP.get('/', function(req, res) {
   res.render("main/index.jade");
 });
 

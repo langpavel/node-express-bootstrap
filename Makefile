@@ -19,11 +19,15 @@ public/javascripts/jquery-1.7.2.js: download-jquery
 
 public/javascripts/jquery-1.7.2.min.js: download-jquery
 
-public/javascripts/site.js: public/javascripts/jquery-1.7.2.min.js public/javascripts/bootstrap.min.js
+public/javascripts/site.js: public/javascripts/jquery-1.7.2.min.js public/javascripts/bootstrap.min.js module-bootstrap
 	cat public/javascripts/jquery-1.7.2.min.js public/javascripts/bootstrap.min.js > public/javascripts/site.js
 
 download-html5shim:
 	wget http://html5shim.googlecode.com/svn/trunk/html5.js -O ./public/javascripts/html5.js
 
+module-bootstrap:
+	cd node_modules/bootstrap/ && make bootstrap
+
 .PHONY:
-	clean download download-jquery download-html5shim
+	clean download download-jquery download-html5shim module-bootstrap
+

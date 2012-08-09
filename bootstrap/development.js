@@ -1,5 +1,5 @@
 
-// SERVER and CONF are global variables
+// APP and CONF are global variables
 
 
 
@@ -7,11 +7,11 @@ var express = require('express');
 
 
 
-SERVER.use(express.errorHandler({
+APP.use(express.errorHandler({
   dumpExceptions: true, 
   showStack: true }
 ));
 
 
 
-SERVER.use(require('connect-repl')());
+APP.use(require('connect-repl')());
