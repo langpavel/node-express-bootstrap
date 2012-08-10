@@ -16,7 +16,7 @@ module.exports = exports = function setupRoutes(app) {
 
       var html = showdownConverter.makeHtml(text);
 
-      res.render('pages/default', { text: text, html: html });
+      res.render('pages/default.jade', { text: text, html: html });
     });
   });
 

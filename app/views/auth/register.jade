@@ -1,0 +1,23 @@
+extends ../layout
+
+block title
+  title Přihlásit
+
+block content
+  h2 Registrace nového uživatele
+  - if ('undefined' !== typeof errors && errors.length)
+    ul#errors
+      - each error in errors
+        li.error= error
+  form(action='/register', method='post')
+    #login
+      label(for=everyauth.password.loginFormFieldName) Uživatelské jméno
+      input(type='text', name=everyauth.password.loginFormFieldName, value=userParams[everyauth.password.loginFormFieldName])
+    #password
+      label(for=everyauth.password.passwordFormFieldName) Heslo
+      input(type='password', name=everyauth.password.passwordFormFieldName)
+    #password
+      label(for=everyauth.password.passwordFormFieldName) Heslo (znovu &mdash; pro ověření)
+      input(type='password', name='verification')
+    #submit
+      input(type='submit', value='Registrovat') 

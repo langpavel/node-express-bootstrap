@@ -12,5 +12,5 @@ module.exports = exports = function bootstrapDevelopment(app) {
     showStack: true }
   ));
 
-  app.use(require('connect-repl')());
+  app.use(require('connect-repl')({app: app}));
 };

@@ -13,6 +13,7 @@
     "connect-repl": "~0.0.1",
     "debug": "~0.7.0",
     "emailjs": "~0.2.9",
+    "everyauth": "git://github.com/langpavel/everyauth.git#express3-my",
     "express": "~3.0.0rc2",
     "gm": "~1.4.1",
     "highlight.js": "~7.0.1",

@@ -1,9 +1,9 @@
 mixin usermenu
   .btn-group.pull-right
-    if locals.user
+    if everyauth.loggedIn
       a.btn.dropdown-toggle(data-toggle="dropdown", href="#")
         i.icon-user
-        |  Username 
+        = everyauth.user.name
         span.caret
       ul.dropdown-menu
         li: a(href="#") Profile

@@ -49,6 +49,8 @@ module.exports = exports = function bootstrapBefore(app) {
 
   app.use(express.csrf());
 
+  require('./everyauth')(app);
+
   app.use(app.router);
 
 
