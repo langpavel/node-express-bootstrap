@@ -1,10 +1,5 @@
-
 NOTE -- Showdown on GitHub
 ==========================
-
-\-  
-&ndash;  
-&mdash;
 
 Please note that I, Corey, am not the author of Showdown. Rather, I found it
 some time back at <http://attacklab.net/showdown/>
@@ -41,7 +36,7 @@ See license.txt for more information.
 Quick Example
 -------------
 
-```  js
+```
 var Showdown = require('showdown');
 var converter = new Showdown.converter();
 
