@@ -9,26 +9,22 @@ module.exports = function bootstrapEveryauthPassword(app) {
     .loginFormFieldName('username')
     .passwordFormFieldName('password')
 
-    .authenticate( function (login, password) {
+    .authenticate(function(login, password) {
+      // https://github.com/langpavel/everyauth/blob/express3-debug/README.md#password-authentication
+
       // Either, we return a user or an array of errors if doing sync auth.
       // Or, we return a Promise that can fulfill to promise.fulfill(user) or promise.fulfill(errors)
       // `errors` is an array of error message strings
       //
-      // e.g., 
-      // Example 1 - Sync Example
-      // if (usersByLogin[login] && usersByLogin[login].password === password) {
-      //   return usersByLogin[login];
-      // } else {
-      //   return ['Login failed'];
-      // }
-      //
-      // Example 2 - Async Example
-      // var promise = this.Promise()
-      // YourUserModel.find({ login: login}, function (err, user) {
-      //   if (err) return promise.fulfill([err]);
-      //   promise.fulfill(user);
-      // }
-      // return promise;
+      var promise = this.Promise();
+      app.model;
+      /*
+      YourUserModel.find({ login: login}, function (err, user) {
+         if (err) return promise.fulfill([err]);
+         promise.fulfill(user);
+      }*/
+      return promise;
+
     })
     .loginSuccessRedirect('/') // Where to redirect to after a login
 

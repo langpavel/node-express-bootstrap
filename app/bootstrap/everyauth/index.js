@@ -15,8 +15,6 @@ module.exports = function bootstrapEveryauth(app) {
 
   require('./password')(app);
 
-  everyauth.helpExpress(app);
-
   app.use(everyauth.middleware(app));
 
 };

@@ -1,4 +1,6 @@
 
+require('better-inspect');
+
 debug = require('debug')('application:server');
 debug('Boot at ' + (new Date).toISOString());
 
