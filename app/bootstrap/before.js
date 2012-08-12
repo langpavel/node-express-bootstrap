@@ -11,10 +11,6 @@ module.exports = exports = function bootstrapBefore(app) {
   var CONF = app.configuration;
 
 
-  app.use(express.favicon(CONF.favicon));
-
-  app.use(express.methodOverride(CONF.methodOverride));
-
   app.use(express.logger(CONF.logger));
 
   app.use(express.bodyParser());

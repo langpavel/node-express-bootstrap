@@ -3,6 +3,6 @@ module.exports = bootResponseTime;
 
 
 
-function bootResponseTime(app) {
+function bootResponseTime(app, conf) {
   app.use(app.express.responseTime());
 }

@@ -16,7 +16,7 @@ function bootstrap(app) {
 
   app.configuration = require('../../conf');
 
-  //app.resolvePath = 
+  app.resolveAppPath = path.resolve.bind(path, __dirname, '../..');
 
   app.boot = function boot(what) {
     var name = what;
@@ -37,22 +37,14 @@ function bootstrap(app) {
     }
 
     if(debug.enabled)
-      debug('Loading ' + what + ': ' + util.inspect(conf));
+      debug('Loading ' + what + ': ' + util.inspect(conf, false, 4, DEBUG.colored));
 
     return require('./' + name)(this, conf);
   };
 
   app.boot('conf');
-  app.boot('produCtion:locals');
-  app.boot('redis');
-  app.boot('middleware/responseTime');
 
-  app.boot('before');
-
-  // 'production' or 'development' based on NODE_ENV
-  app.boot(env);
-
-  app.boot('after');
+  app.configuration.bootstrap.forEach(app.boot.bind(app));
 
   debug('Configuration loaded');
 };
