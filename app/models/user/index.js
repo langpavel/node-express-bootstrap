@@ -1,5 +1,5 @@
-
-var debug = require('debug')('application:model:user');
+/*
+var debug = require('debug')('application:model');
 
 
 var redis = APP.redisClient;
@@ -19,3 +19,4 @@ exports.get = function(id, callback) {
 exports.put = function(user, callback) {
   debug('model.user.get "'+id+'"');
 };
+*/

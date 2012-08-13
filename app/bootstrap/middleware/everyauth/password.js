@@ -1,7 +1,11 @@
 
-module.exports = function bootstrapEveryauthPassword(app) {
+module.exports = function bootstrapEveryauthPassword(conf) {
 
-  app.everyauth.password
+  for(var key in conf) {
+    this.everyauth[key](conf[key]);
+  }
+
+  this.everyauth.password
     .getLoginPath('/login') // Uri path to the login page
     .postLoginPath('/login') // Uri path that your login form POSTs to
 
