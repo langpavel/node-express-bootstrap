@@ -1,0 +1,20 @@
+extends ../layout
+
+block title
+  title Přihlásit
+
+block content
+  h2 Přihlásit heslem
+  - if ('undefined' !== typeof errors && errors.length)
+    ul#errors
+      - each error in errors
+        li.error= error
+  form(action='/register', method='post')
+    #login
+      label(for=everyauth.password.loginFormFieldName) Uživatelské jméno
+      input(type='text', name=everyauth.password.loginFormFieldName)
+    #password
+      label(for=everyauth.password.passwordFormFieldName) Heslo
+      input(type='password', name=everyauth.password.passwordFormFieldName)
+    #submit
+      input(type='submit', value='Přihlásit')
