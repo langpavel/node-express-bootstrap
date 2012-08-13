@@ -3,7 +3,7 @@ module.exports = bootFavicon;
 
 
 
-function bootFavicon(app, conf) {
-  conf.icon = app.resolveAppPath(conf.icon || './public/favicon.ico');
-  app.use(app.express.favicon(conf.icon));
+function bootFavicon(conf) {
+  conf.icon = this.resolveAppPath(conf.icon || './public/favicon.ico');
+  return this.express.favicon(conf.icon);
 }

@@ -7,16 +7,14 @@ module.exports = bootRedis;
 
 
 
-function bootRedis(app) {
+function bootRedis(conf) {
 
-  var conf = app.configuration.redis;
+  this.redis = redis;
 
-  app.redis = redis;
-
-
-  app.redisCreateClient = redis.createClient.bind(
+  this.redisCreateClient = redis.createClient.bind(
     redis, conf.port || conf.socket, conf.host, conf.options);
 
-  app.redisClient = app.redisCreateClient();
+  this.redisClient = this.redisCreateClient();
 
+  return true;
 };

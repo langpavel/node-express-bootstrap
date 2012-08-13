@@ -1,0 +1,141 @@
+{
+  "bootstrap": [
+    "express",
+    "locals", 
+    "redis",
+    "middleware/responseTime",
+    "middleware/favicon",
+    "middleware/methodOverride",
+    "middleware/logger",
+    "middleware/cookieParser",
+    "middleware/bodyParser",
+    "middleware/session/redis",
+    "middleware/session",
+    "middleware/csfr",
+    "middleware/stylus@/stylesheets",
+    "router",
+    "middleware/static",
+    "middleware/errorHandler",
+
+    "sync!development:http@devel",
+
+    "development:repl"
+  ],
+
+  "express": {
+    "view engine": "jade",
+    "views": "./app/views",
+    "strict routing": true,
+    "case sensitive routing": true,
+    "trust proxy": false,
+    "json spaces": 2,
+    "jsonp callback": false
+  },
+
+  "locals": {
+    "title": "blog"
+  },
+
+  "redis": {
+    "host": "127.0.0.1",
+    "port": "6379",
+    "options": {
+      "parser": "hiredis",
+      "return_buffers": false,
+      "detect_buffers": false,
+      "socket_nodelay": true,
+      "no_ready_check": false,
+      "enable_offline_queue": true
+    }
+  },
+
+  "middleware/responseTime": {},
+
+  "middleware/favicon": {
+    "icon": "./public/favicon.ico"
+  },
+
+  "middleware/methodOverride": {
+    "key": "_method"
+  },
+
+  "middleware/logger": {
+    "format": "tiny"
+  },
+
+  "middleware/cookieParser": {
+    "secret": "Hebki0YKV6wlyI2JuAmtDCADzqJsBkXo8PCHSInZ"
+  },
+
+  "middleware/session/redis": {
+    "ttl": 5184000,
+    "db": 0,
+    "pass": false,
+    "prefix": "sess:"
+  },
+  
+  "middleware/session": {
+    "key": "sid",
+    "cookie": {
+      "path": "/",
+      "httpOnly": true,
+      "maxAge": null
+    }
+  },
+
+  "middleware/csfr": {
+    "value": "(req.body && req.body._csrf) || (req.query && req.query._csrf) || (req.headers['x-csrf-token'])"
+  },
+
+  "middleware/stylus": {
+    "src": "./public/stylesheets",
+    "dest": "./public/stylesheets",
+    "useNib": true,
+    "compress": true
+  },
+
+  "middleware/static": {
+    "root": "./public",
+    "maxAge": 60000,
+    "hidden": false,
+    "redirect": true
+  },
+  "development:middleware/static": {
+    "maxAge": 0
+  },
+
+  "http": {
+    "port": 80,
+    "host": "127.0.0.1"
+  },
+  "http@devel": {
+    "port": 3333
+  },
+
+  "middleware/errorHandler": {
+    "dumpExceptions": false, 
+    "showStack": false
+  },
+  "development:middleware/errorHandler": {
+    "dumpExceptions": true, 
+    "showStack": true
+  },
+
+
+  "model": {
+    "user": "usr:"
+  },
+  "mysql": {
+    "host": "localhost",
+    "port": 3306,
+    "socketPath": null,
+    "user": "blog",
+    "password": "password",
+    "database": "blog",
+    "charset": "UTF8_GENERAL_CI",
+    "insecureAuth": false,
+    "typeCast": true,
+    "debug": false,
+    "multipleStatements": false
+  }
+}

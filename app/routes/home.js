@@ -1,7 +1,7 @@
 
-module.exports = exports = function setupRoutes(app) {
+module.exports = exports = function setupRoutes(conf) {
 
-  app.get('/', function(req, res) {
+  this.get('/', function(req, res) {
     res.render("home/index.jade");
   });
 

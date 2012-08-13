@@ -3,6 +3,6 @@ module.exports = bootMethodOverride;
 
 
 
-function bootMethodOverride(app, conf) {
-  app.use(app.express.methodOverride(conf));
+function bootMethodOverride(conf) {
+  return this.express.methodOverride(conf.key);
 }

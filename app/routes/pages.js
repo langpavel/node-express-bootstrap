@@ -6,11 +6,10 @@ var showdown = require('showdown');
 var showdownConverter = new showdown.converter();
 
 
-module.exports = exports = function setupRoutes(app) {
-  var conf = app.configuration;
+module.exports = exports = function setupRoutes(conf) {
 
-  app.get('/:page$', function(req, res, next) {
-    var filename = path.resolve(__dirname, '../../pages', req.params.page + '.md');
+  this.get('/:page$', function(req, res, next) {
+    var filename = this.resolveAppPath('./pages', req.params.page + '.md');
     fs.readFile(filename, 'utf-8', function(err, text) {
       if(err) return next(); // go next match routing
 

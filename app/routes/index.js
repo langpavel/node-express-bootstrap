@@ -1,7 +1,7 @@
 
-module.exports = exports = function setupRoutes(app) {
+module.exports = exports = function setupRoutes(conf) {
 
-  require('./home')(app);
-  require('./pages')(app);
+  require('./home').call(this, conf);
+  require('./pages').call(this, conf);
 
 };
