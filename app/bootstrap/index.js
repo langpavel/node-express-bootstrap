@@ -11,6 +11,20 @@ var colors = require('colors');
 module.exports = bootstrap;
 
 
+/**
+ * Chain prototypes, last item properties wins.
+ * return last passed object
+ */
+function chainPrototypes() {
+  return Array.prototype.reduce.call(arguments, function(prev, curr) {
+    if(!prev) return curr;
+    if(!curr) return prev;
+    if(prev === curr) return curr;
+    curr.__proto__ = prev;
+    return curr;
+  });
+}
+
 
 // matches ENV:NAME@ROUTE pattern
 var pattern = /^(?:(sync|async)!)?(?:([^:@]+):)?([^@]+)(?:@(.+))?$/;
@@ -38,18 +52,17 @@ function boot(appEnv, configuration, what, callback) {
   env = appEnv;
   route = route || '/';
 
-  var conf = {};
-  var rootconf = configuration[name] || {};
-  var envconf = configuration[env+':'+name] || {};
-  var routeconf = configuration[name+'@'+route] || {};
-  var envrouteconf = configuration[env+':'+name+'@'+route] || {};
+  var conf = chainPrototypes(
+    configuration[name], // root
+    configuration[env+':'+name], // environment
+    configuration[name+'@'+route], // route
+    configuration[env+':'+name+'@'+route], // environment route
+    {} // for modifications
+  );
 
-  envconf.__proto__ = rootconf;
-  routeconf.__proto__ = envconf;
-  envrouteconf.__proto__ = routeconf;
-
-  for(var key in envrouteconf) {
-    conf[key] = envrouteconf[key];
+  // this copy properties from prototype to object itself
+  for(var key in conf) {
+    conf[key] = conf[key];
   }
   conf.route = route;
 
@@ -107,6 +120,23 @@ function boot(appEnv, configuration, what, callback) {
 
 
 
+function tryLoadConf(what) {
+  what = path.resolve(__dirname, what);
+  debug('Loading \''+what+'\'...');
+  try {
+    return require(what);
+  } catch(err) {
+    if(err.code === 'MODULE_NOT_FOUND') {
+      debug('WARNING \''+what+'\': file does not exists');
+      return;
+    }
+    debug('ERROR \''+what+'\': '+err);
+    throw err;
+  }
+}
+
+
+
 function bootstrap(app) {
   if(!app) {
     app = express();
@@ -118,7 +148,12 @@ function bootstrap(app) {
   app.resolveAppPath = app.resolveAppPath || path.resolve.bind(path, __dirname, '../..');
 
   var env = app.get('env');
-  var configuration = require('../../conf');
+
+  var configuration = chainPrototypes(
+    tryLoadConf('../../conf.app.json'),
+    tryLoadConf('../../conf.json'),
+    {}
+  );
 
   async.mapSeries(
     configuration.bootstrap, 

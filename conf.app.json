@@ -9,15 +9,25 @@
     "middleware/logger",
     "middleware/cookieParser",
     "middleware/bodyParser",
+
+    "middleware/stylus@/stylesheets",
+
     "middleware/session/redis",
     "middleware/session",
     "middleware/csfr",
-    "middleware/stylus@/stylesheets",
+
+    "middleware/passport",
+    "middleware/passport/session",
+    "middleware/passport/password",
+
     "router",
-    "middleware/static",
+
+    "middleware/static@/",
+
     "middleware/errorHandler",
 
-    "sync!development:http@devel",
+    "sync!http@4",
+    "sync!http@6",
 
     "development:repl"
   ],
@@ -64,7 +74,17 @@
   },
 
   "middleware/cookieParser": {
-    "secret": "Hebki0YKV6wlyI2JuAmtDCADzqJsBkXo8PCHSInZ"
+    "secret": "Keyboard Cat"
+  },
+
+  "middleware/bodyParser": {
+  },
+
+  "middleware/stylus": {
+    "src": "./public/stylesheets",
+    "dest": "./public/stylesheets",
+    "useNib": true,
+    "compress": true
   },
 
   "middleware/session/redis": {
@@ -87,18 +107,7 @@
     "value": "(req.body && req.body._csrf) || (req.query && req.query._csrf) || (req.headers['x-csrf-token'])"
   },
 
-  "middleware/stylus": {
-    "src": "./public/stylesheets",
-    "dest": "./public/stylesheets",
-    "useNib": true,
-    "compress": true
-  },
-
-  "middleware/everyauth": {
-  },
-
   "router": {
-
   },
 
   "middleware/static": {
@@ -111,13 +120,22 @@
     "maxAge": 0
   },
 
-  "http": {
+
+  "http@4": {
     "port": 80,
     "host": "127.0.0.1"
   },
-  "http@devel": {
+  "http@6": {
+    "port": 80,
+    "host": "::1"
+  },
+  "development:http@4": {
     "port": 3333
   },
+  "development:http@6": {
+    "port": 3333
+  },
+
 
   "middleware/errorHandler": {
     "dumpExceptions": false, 
@@ -127,6 +145,7 @@
     "dumpExceptions": true, 
     "showStack": true
   },
+
 
 
   "model": {
