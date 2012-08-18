@@ -57,6 +57,7 @@ function boot(appEnv, configuration, what, callback) {
     configuration[env+':'+name], // environment
     configuration[name+'@'+route], // route
     configuration[env+':'+name+'@'+route], // environment route
+    {}
   );
 
   if(_conf.enabled === false) {
