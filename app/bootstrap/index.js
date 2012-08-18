@@ -52,29 +52,43 @@ function boot(appEnv, configuration, what, callback) {
   env = appEnv;
   route = route || '/';
 
-  var conf = chainPrototypes(
+  var _conf = chainPrototypes(
     configuration[name], // root
     configuration[env+':'+name], // environment
     configuration[name+'@'+route], // route
     configuration[env+':'+name+'@'+route], // environment route
-    {} // for modifications
   );
 
-  // this copy properties from prototype to object itself
-  for(var key in conf) {
-    conf[key] = conf[key];
+  if(_conf.enabled === false) {
+    debug('Skipping disabled ' + (DEBUG.colored ? what.bold.red : what));
+    return callback(null);
+  }
+
+  // do not chain prototypes here, copy instead
+  var conf = {};
+  for(var key in _conf) {
+    conf[key] = _conf[key];
   }
   conf.route = route;
 
-  if(conf.enabled === false) {
-    debug('Skipping disabled ' + (DEBUG.colored ? what.bold.red : what));
+  var initializer = require('./' + name);
+
+  if(initializer.configure) {
+    debug('Configuring ' + (DEBUG.colored ? what.bold : what));
+
+    conf = initializer.configure.call(app, conf);
+    if(typeof conf === 'undefined')
+      return callback(new Error('configure method must return configuration: at '+what));
+
+    if(conf.enabled === false) {
+      debug('Skipping ' + (DEBUG.colored ? what.bold.red : what) + ' disabled by configuration');
+      return callback(null);
+    }
   }
 
   if(debug.enabled)
     debug('Loading ' + (DEBUG.colored ? what.bold : what) + 
       ':\n  ' + util.inspect(conf, false, 6, DEBUG.colored).replace(/\n/g,'\n  '));
-
-  var initializer = require('./' + name);
 
   var long_reporter = null;
 

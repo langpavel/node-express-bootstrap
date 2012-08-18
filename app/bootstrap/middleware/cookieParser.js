@@ -4,9 +4,13 @@ module.exports = bootCookieParser;
 
 
 function bootCookieParser(conf) {
-  // secure secret
-  var secret = conf.secret;
-  delete conf.secret;
-  
-  return this.express.cookieParser(secret);
+  return this.express.cookieParser(bootCookieParser.secret);
 }
+
+
+
+bootCookieParser.configure = function(conf) {
+  bootCookieParser.secret = conf.secret;
+  delete conf.secret;
+  return conf;
+};

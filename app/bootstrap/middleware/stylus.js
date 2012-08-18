@@ -9,6 +9,12 @@ module.exports = bootStylus;
 
 
 function bootStylus(conf) {
+  return stylus.middleware(conf);
+}
+
+
+
+bootStylus.configure = function(conf) {
   conf.src = this.resolveAppPath(conf.src || './public/stylesheets');
   conf.dest = this.resolveAppPath(conf.dest || conf.src);
 
@@ -26,5 +32,5 @@ function bootStylus(conf) {
     return result;
   };
 
-  return stylus.middleware(conf);
-}
+  return conf;
+};

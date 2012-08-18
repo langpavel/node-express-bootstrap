@@ -8,6 +8,12 @@ module.exports = bootLogger;
 
 
 function bootLogger(conf) {
+  return this.express.logger(conf);
+}
+
+
+
+bootLogger.configure = function(conf) {
   // setup logging into file
   if(conf.stream) {
     if(conf.stream === 'stdout')
@@ -32,5 +38,5 @@ function bootLogger(conf) {
     }
   }
 
-  return this.express.logger(conf);
+  return conf;
 }

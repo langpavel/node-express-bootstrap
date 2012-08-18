@@ -4,10 +4,14 @@ module.exports = bootLocals;
 
 
 function bootLocals(conf) {
-
-  delete conf.route;
-
   this.locals(conf);
 
   return true;
 }
+
+
+
+bootLocals.configure = function(conf) {
+  delete conf.route;
+  return conf;
+};
