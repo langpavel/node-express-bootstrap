@@ -20,6 +20,10 @@
     "middleware/session",
     "middleware/csfr",
 
+	"middleware/passport",
+	"middleware/passport/session",
+	"middleware/passport/password",
+
     "router",
 
     "middleware/static@/",
