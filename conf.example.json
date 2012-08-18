@@ -1,0 +1,23 @@
+{
+  "COMMENT":[
+    "This is example `conf.json` file.",
+    "Every root key in conf.app.json can be overriden here.",
+    "See app/bootstrap/index.js for implementation details"
+  ],
+  "http@IPv4": {
+    "port": 8000,
+    "host": "127.0.0.1"
+  },
+  "http@IPv6": {
+    "port": 8000,
+    "host": "::1"
+  },
+  "development:http@IPv4": {
+    "port": 3333,
+    "host": "127.0.0.1"
+  },
+  "development:http@IPv6": {
+    "port": 3333,
+    "host": "::1"
+  }
+}

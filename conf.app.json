@@ -1,4 +1,8 @@
 {
+  "COMMENT":[
+    "Every root key here can be overrided in conf.json.",
+    "See app/bootstrap/index.js for implementation details"
+  ],
   "bootstrap": [
     "express",
     "locals", 
@@ -16,18 +20,14 @@
     "middleware/session",
     "middleware/csfr",
 
-    "middleware/passport",
-    "middleware/passport/session",
-    "middleware/passport/password",
-
     "router",
 
     "middleware/static@/",
 
     "middleware/errorHandler",
 
-    "sync!http@4",
-    "sync!http@6",
+    "sync!http@IPv4",
+    "sync!http@IPv6",
 
     "development:repl"
   ],
@@ -121,19 +121,21 @@
   },
 
 
-  "http@4": {
+  "http@IPv4": {
     "port": 80,
+    "host": "0.0.0.0"
+  },
+  "http@IPv6": {
+    "port": 80,
+    "host": "::"
+  },
+  "development:http@IPv4": {
+    "port": 3333,
     "host": "127.0.0.1"
   },
-  "http@6": {
-    "port": 80,
+  "development:http@IPv6": {
+    "port": 3333,
     "host": "::1"
-  },
-  "development:http@4": {
-    "port": 3333
-  },
-  "development:http@6": {
-    "port": 3333
   },
 
 

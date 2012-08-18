@@ -1,7 +1,7 @@
 {
-  "name": "blog.hravost.org",
-  "version": "0.0.1",
-  "private": true,
+  "name": "express-bootstrap",
+  "version": "0.0.0",
+  "private": false,
   "dependencies": {
     "async": "~0.1.22",
     "better-inspect": "0.0.x",

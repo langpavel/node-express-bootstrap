@@ -55,14 +55,23 @@ function bootHttpServer(conf, cb) {
   };
 
   var server = http.createServer(this);
-  server.on('error', cb);
+  
+  server.on('error', function(err) {
+    debug("ERROR: Server cannot listen: " + err + ': args: ' + util.inspect(args));
+    cb(err);
+  });
+
   server.on('listening', function() {
     debug("Server listening: " + util.inspect(server.address()));
     cb(null);
   });
+
+  // do the work
   server.listen.apply(server, args);
 
+  // save server instance to app.modules
   this.modules['http@'+conf.route] = server;
 
+  // return provided callback to hint async behavior
   return cb;
 }
