@@ -9,6 +9,7 @@
     "browserify": "~1.14.5",
     "colors": "~0.6.0-1",
     "commander": "~0.6.1",
+    "connect-flash": "~0.1.0",
     "connect-redis": "~1.4.1",
     "connect-repl": "~0.0.1",
     "debug": "~0.7.0",

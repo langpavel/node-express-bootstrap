@@ -4,10 +4,13 @@
     "See app/bootstrap/index.js for implementation details"
   ],
   "bootstrap": [
-    "express",
-    "locals", 
-    "redis",
     "middleware/responseTime",
+
+    "bootstrap/express",
+    "bootstrap/locals",
+    "bootstrap/redis",
+    "sync!bootstrap/mysql",
+    
     "middleware/favicon",
     "middleware/methodOverride",
     "middleware/logger",
@@ -19,24 +22,36 @@
     "middleware/session/redis",
     "middleware/session",
     "middleware/csfr",
+    "middleware/flashMessage",
 
-	"middleware/passport",
-	"middleware/passport/session",
-	"middleware/passport/password",
+    "bootstrap/model",
 
-    "router",
+    "middleware/passport",
+    "middleware/passport/session",
+    "middleware/passport/password@/login",
+
+    "bootstrap/router",
+    
+    "routes/home@/",
+    "routes/pages@/",
 
     "middleware/static@/",
 
     "middleware/errorHandler",
 
-    "sync!http@IPv4",
-    "sync!http@IPv6",
+    "sync!bootstrap/http@IPv4",
+    "sync!bootstrap/http@IPv6",
 
-    "development:repl"
+    "development:bootstrap/repl"
   ],
 
-  "express": {
+  "router": {},
+
+  "routes/home@/": {
+
+  },
+
+  "bootstrap/express": {
     "view engine": "jade",
     "views": "./app/views",
     "strict routing": true,
@@ -46,11 +61,11 @@
     "jsonp callback": false
   },
 
-  "locals": {
+  "bootstrap/locals": {
     "title": "blog"
   },
 
-  "redis": {
+  "bootstrap/redis": {
     "host": "127.0.0.1",
     "port": "6379",
     "options": {
@@ -61,6 +76,20 @@
       "no_ready_check": false,
       "enable_offline_queue": true
     }
+  },
+
+  "bootstrap/mysql": {
+    "host": "localhost",
+    "port": 3306,
+    "socketPath": null,
+    "user": "blog",
+    "password": "password",
+    "database": "blog",
+    "charset": "UTF8_GENERAL_CI",
+    "insecureAuth": false,
+    "typeCast": true,
+    "debug": false,
+    "multipleStatements": false
   },
 
   "middleware/responseTime": {},
@@ -111,7 +140,33 @@
     "value": "(req.body && req.body._csrf) || (req.query && req.query._csrf) || (req.headers['x-csrf-token'])"
   },
 
-  "router": {
+
+  "bootstrap/model": {
+    "models": {
+      "user": "./app/models/user"
+    },
+
+    "user": {
+      "prefix": "user:"
+    }
+
+  },
+
+  "middleware/passport": {
+
+  },
+
+  "middleware/passport/session": {
+  },
+
+  "middleware/passport/password@/login": {
+    "strategy": {},
+    "handler": {
+      "successRedirect": "/",
+      "failureRedirect": "/login",
+      "failureFlash": true
+    },
+    "template": "auth/login"
   },
 
   "middleware/static": {
@@ -125,19 +180,19 @@
   },
 
 
-  "http@IPv4": {
+  "bootstrap/http@IPv4": {
     "port": 80,
     "host": "0.0.0.0"
   },
-  "http@IPv6": {
+  "bootstrap/http@IPv6": {
     "port": 80,
     "host": "::"
   },
-  "development:http@IPv4": {
+  "development:bootstrap/http@IPv4": {
     "port": 3333,
     "host": "127.0.0.1"
   },
-  "development:http@IPv6": {
+  "development:bootstrap/http@IPv6": {
     "port": 3333,
     "host": "::1"
   },
@@ -150,24 +205,6 @@
   "development:middleware/errorHandler": {
     "dumpExceptions": true, 
     "showStack": true
-  },
-
-
-
-  "model": {
-    "user": "usr:"
-  },
-  "mysql": {
-    "host": "localhost",
-    "port": 3306,
-    "socketPath": null,
-    "user": "blog",
-    "password": "password",
-    "database": "blog",
-    "charset": "UTF8_GENERAL_CI",
-    "insecureAuth": false,
-    "typeCast": true,
-    "debug": false,
-    "multipleStatements": false
   }
+
 }

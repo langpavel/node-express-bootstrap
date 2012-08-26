@@ -1,6 +1,7 @@
 include mixins/scripts
 include mixins/inputs
 include mixins/menus
+include mixins/alerts
 
 !!! 5
 html(lang='cs')
@@ -47,6 +48,9 @@ html(lang='cs')
     .container-fluid
       .row-fluid
         .span10
+          block alerts
+            mixin alerts
+
           block content
             .hero-unit
               h1 Hravost o.<span style="font-size:50%">&nbsp;</span>s.

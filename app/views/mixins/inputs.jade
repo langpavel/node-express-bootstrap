@@ -23,3 +23,6 @@ mixin formerrors
       ul.errors
         each error in errors['_FORM_']
           li= error
+
+mixin csrf(value)
+  input(type='hidden', name='_csrf', value=req.session._csrf)

@@ -72,7 +72,7 @@ function boot(appEnv, configuration, what, callback) {
   }
   conf.route = route;
 
-  var initializer = require('./' + name);
+  var initializer = require('../' + name);
 
   if(initializer.configure) {
     debug('Configuring ' + (DEBUG.colored ? what.bold : what));

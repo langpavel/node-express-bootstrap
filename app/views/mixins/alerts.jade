@@ -1,0 +1,23 @@
+mixin alert(text, type)
+  .alert(class=type ? 'alert-'+type : '')
+    a.close(href="#", class="close", data-dismiss="alert") ×
+    = text
+
+mixin alerts
+  flash_errors = req.flash('error')
+  flash_warnings = req.flash('warning')
+  flash_infos = req.flash('info')
+  flash_successes = req.flash('success')
+
+  each error in flash_errors
+    mixin alert(error, 'error')
+
+  each warning in flash_warnings
+    mixin alert(warning, 'warning')
+
+
+  each info in flash_infos
+    mixin alert(info, 'info')
+    
+  each success in flash_successes
+    mixin alert(success, 'success')

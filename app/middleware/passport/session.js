@@ -7,7 +7,7 @@ function bootPassportSession(conf) {
   var passport = this.modules.passport;
 
   if(!passport)
-    throw new Error('Bootstrap `passport` prior submodule');
+    throw new Error('Do bootstrap `passport` prior submodule (session)');
 
   return passport.session(conf);
 }

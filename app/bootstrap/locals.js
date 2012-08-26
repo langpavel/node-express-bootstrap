@@ -6,7 +6,11 @@ module.exports = bootLocals;
 function bootLocals(conf) {
   this.locals(conf);
 
-  return true;
+  return function(req, res, next) {
+    res.locals.req = req;
+    res.locals.res = res;
+    next();
+  };
 }
 
 
